@@ -9,13 +9,10 @@ var zoom = 10
 @onready var camera = $Camera
 
 func _init():
-	zoom = Globals.config.initial_zoom
+	zoom = Globals.config.zoom_initial
 
 func _ready():
-	
 	camera_rotation = rotation_degrees # Initial rotation
-	
-	pass
 
 func _physics_process(delta):
 	
@@ -44,5 +41,6 @@ func handle_input(delta):
 	
 	# Zooming
 	
-	zoom += Input.get_axis("zoom_in", "zoom_out") * Globals.config.zoom_speed * delta
-	zoom = clamp(zoom, Globals.config.zoom_maximum, Globals.config.zoom_minimum)
+	if Globals.config.zoom_enabled:
+		zoom += Input.get_axis("zoom_in", "zoom_out") * Globals.config.zoom_speed * delta
+		zoom = clamp(zoom, Globals.config.zoom_maximum, Globals.config.zoom_minimum)

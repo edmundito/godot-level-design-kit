@@ -10,8 +10,9 @@ enum NavigationType { TWO_DIMENSIONAL, THREE_DIMENSIONAL }
 @export_group("Camera")
 @export_range(1, 179) var field_of_view: int = 40
 
-@export_subgroup("Zoom")
-@export var initial_zoom = 10
+@export_subgroup("Zoom", "zoom_")
+@export var zoom_enabled := false
+@export var zoom_initial = 10
 @export var zoom_minimum = 16
 @export var zoom_maximum = 4
 @export var zoom_speed = 10
