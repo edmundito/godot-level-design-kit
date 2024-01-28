@@ -1,9 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dx3xxm0qykltd"]
+[gd_resource type="Resource" script_class="GameConfig" load_steps=2 format=3 uid="uid://dx3xxm0qykltd"]
 
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/resources/config.gd" id="1_py3dd"]
 
 [resource]
 script = ExtResource("1_py3dd")
-mode = 0
-camera_type = 0
-gravity = 0
+navigation_type = 1
+gravity = 25.0
+field_of_view = 40
+initial_zoom = 10
+zoom_minimum = 16
+zoom_maximum = 4
+zoom_speed = 10
+rotation_speed = 120
+movement_speed = 250.0
+jump_strength = 7.0
+double_jump = false

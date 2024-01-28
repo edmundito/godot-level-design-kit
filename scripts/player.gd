@@ -5,10 +5,6 @@ signal coin_collected
 @export_subgroup("Components")
 @export var view: Node3D
 
-@export_subgroup("Properties")
-@export var movement_speed = 250
-@export var jump_strength = 7
-
 var movement_velocity: Vector3
 var rotation_direction: float
 var gravity = 0
@@ -89,40 +85,43 @@ func handle_effects():
 
 # Handle movement input
 
-func handle_controls(delta):
-	
-	# Movement
-	
+func _handle_movement(delta):
 	var input := Vector3.ZERO
 	
-	input.x = Input.get_axis("move_left", "move_right")
-	input.z = Input.get_axis("move_forward", "move_back")
+	if Globals.config.is_3d_navigation():
+		input.x = Input.get_axis("move_left", "move_right")
+		input.z = Input.get_axis("move_forward", "move_back")
+		input = input.rotated(Vector3.UP, view.rotation.y).normalized()
+	else:
+		input.x = Input.get_axis("move_left", "move_right")
 	
-	input = input.rotated(Vector3.UP, view.rotation.y).normalized()
+	movement_velocity = input * Globals.config.movement_speed * delta
+
+func _handle_jumping(delta):
+	if jump_single or jump_double:
+		Audio.play("res://sounds/jump.ogg")
 	
-	movement_velocity = input * movement_speed * delta
+	if jump_double:
+		
+		gravity = -Globals.config.jump_strength
+		
+		jump_double = false
+		model.scale = Vector3(0.5, 1.5, 0.5)
+		
+	if(jump_single): jump()
 	
-	# Jumping
+func handle_controls(delta):
+	_handle_movement(delta)
 	
 	if Input.is_action_just_pressed("jump"):
-		
-		if jump_single or jump_double:
-			Audio.play("res://sounds/jump.ogg")
-		
-		if jump_double:
-			
-			gravity = -jump_strength
-			
-			jump_double = false
-			model.scale = Vector3(0.5, 1.5, 0.5)
-			
-		if(jump_single): jump()
+		_handle_jumping(delta)
+
 
 # Handle gravity
 
 func handle_gravity(delta):
 	
-	gravity += 25 * delta
+	gravity += Globals.config.gravity * delta
 	
 	if gravity > 0 and is_on_floor():
 		
@@ -133,12 +132,12 @@ func handle_gravity(delta):
 
 func jump():
 	
-	gravity = -jump_strength
+	gravity = -Globals.config.jump_strength
 	
 	model.scale = Vector3(0.5, 1.5, 0.5)
 	
-	jump_single = false;
-	jump_double = true;
+	jump_single = false
+	jump_double = Globals.config.double_jump
 
 # Collecting coins
 
