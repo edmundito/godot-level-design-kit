@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dx3xxm0qykltd"]
+
+[ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/resources/config.gd" id="1_py3dd"]
+
+[resource]
+script = ExtResource("1_py3dd")
+mode = 0
+camera_type = 0
+gravity = 0
