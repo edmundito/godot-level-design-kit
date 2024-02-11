@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=3 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/view.gd" id="1_tecwc"]
-[ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/hud.gd" id="2_cyniu"]
-[ext_resource type="Texture2D" uid="uid://cd7oyc56ehkx1" path="res://addons/platform_level_design_kit/assets/sprites/coin.png" id="3_0y86s"]
-[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://addons/platform_level_design_kit/assets/fonts/lilita/lilita_one_regular.ttf" id="4_16krf"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_38ys3"]
-font = ExtResource("4_16krf")
-font_size = 48
-shadow_color = Color(0, 0, 0, 0.376471)
-shadow_offset = Vector2(2, 2)
+[ext_resource type="PackedScene" uid="uid://ceummapwn6g7u" path="res://addons/platform_level_design_kit/game_ui/hud.tscn" id="2_futj4"]
 
 [node name="Main" type="Node3D"]
 
@@ -27,29 +19,4 @@ transform = Transform3D(-0.422618, -0.694272, 0.582563, 0, 0.642788, 0.766044, -
 shadow_enabled = true
 shadow_opacity = 0.75
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("2_cyniu")
-
-[node name="Icon" type="TextureRect" parent="HUD"]
-offset_left = 57.0
-offset_top = 67.0
-offset_right = 313.0
-offset_bottom = 323.0
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_0y86s")
-
-[node name="x" type="Label" parent="HUD"]
-offset_left = 112.0
-offset_top = 64.0
-offset_right = 144.0
-offset_bottom = 123.0
-text = "×"
-label_settings = SubResource("LabelSettings_38ys3")
-
-[node name="Coins" type="Label" parent="HUD"]
-offset_left = 144.0
-offset_top = 64.0
-offset_right = 368.0
-offset_bottom = 123.0
-text = "0"
-label_settings = SubResource("LabelSettings_38ys3")
+[node name="HUD" parent="." instance=ExtResource("2_futj4")]
