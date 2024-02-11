@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-signal coin_collected
-
 const View = preload("../engine/view.gd")
 var view: View
 
@@ -157,7 +155,5 @@ func jump():
 # Collecting coins
 
 func collect_coin():
-	
 	coins += 1
-	
-	coin_collected.emit(coins)
+	E.coin_collected.emit(coins)
