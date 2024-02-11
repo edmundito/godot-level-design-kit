@@ -16,6 +16,8 @@ var jump_double = true
 
 var coins = 0
 
+@onready var start_position := Vector3(self.position)
+@onready var start_rotation := Vector3(self.rotation)
 @onready var particles_trail = $ParticlesTrail
 @onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
@@ -28,7 +30,6 @@ func _ready() -> void:
 	view.target = self
 
 func _physics_process(delta):
-	
 	# Handle functions
 	
 	handle_controls(delta)
@@ -56,12 +57,11 @@ func _physics_process(delta):
 	# Falling/respawning
 	
 	if position.y < -10:
-		get_tree().reload_current_scene()
-		
-	
+		_respawn()
+		return
 	
 	# Animation for scale (jumping and landing)
-	
+		
 	model.scale = model.scale.lerp(Vector3(1, 1, 1), delta * 10)
 	
 	# Animation when landing
@@ -72,6 +72,15 @@ func _physics_process(delta):
 	
 	previously_floored = is_on_floor()
 
+func _respawn() -> void:
+	rotation = start_rotation
+	position = start_position
+	velocity = Vector3(0, 0, 0)
+	model.scale = Vector3(1, 1, 1)
+	movement_velocity = Vector3(0, 0, 0)
+	rotation_direction = 0
+	gravity = 0
+	
 # Handle animation(s)
 
 func handle_effects():
