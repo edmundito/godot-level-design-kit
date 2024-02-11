@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 signal coin_collected
 
-@export_subgroup("Components")
-@export var view: Node3D
+const View = preload("res://scripts/view.gd")
+var view: View
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -22,6 +22,10 @@ var coins = 0
 @onready var animation = $Character/AnimationPlayer
 
 # Functions
+
+func _ready() -> void:
+	view = E.get_node("Main/View")
+	view.target = self
 
 func _physics_process(delta):
 	
@@ -53,6 +57,8 @@ func _physics_process(delta):
 	
 	if position.y < -10:
 		get_tree().reload_current_scene()
+		
+	
 	
 	# Animation for scale (jumping and landing)
 	
@@ -88,14 +94,14 @@ func handle_effects():
 func _handle_movement(delta):
 	var input := Vector3.ZERO
 	
-	if Globals.config.is_3d_navigation():
+	if G.config.is_3d_navigation():
 		input.x = Input.get_axis("move_left", "move_right")
 		input.z = Input.get_axis("move_forward", "move_back")
 		input = input.rotated(Vector3.UP, view.rotation.y).normalized()
 	else:
 		input.x = Input.get_axis("move_left", "move_right")
 	
-	movement_velocity = input * Globals.config.movement_speed * delta
+	movement_velocity = input * G.config.movement_speed * delta
 
 func _handle_jumping(delta):
 	if jump_single or jump_double:
@@ -103,7 +109,7 @@ func _handle_jumping(delta):
 	
 	if jump_double:
 		
-		gravity = -Globals.config.jump_strength
+		gravity = -G.config.jump_strength
 		
 		jump_double = false
 		model.scale = Vector3(0.5, 1.5, 0.5)
@@ -121,7 +127,7 @@ func handle_controls(delta):
 
 func handle_gravity(delta):
 	
-	gravity += Globals.config.gravity * delta
+	gravity += G.config.gravity * delta
 	
 	if gravity > 0 and is_on_floor():
 		
@@ -132,12 +138,12 @@ func handle_gravity(delta):
 
 func jump():
 	
-	gravity = -Globals.config.jump_strength
+	gravity = -G.config.jump_strength
 	
 	model.scale = Vector3(0.5, 1.5, 0.5)
 	
 	jump_single = false
-	jump_double = Globals.config.double_jump
+	jump_double = G.config.double_jump
 
 # Collecting coins
 

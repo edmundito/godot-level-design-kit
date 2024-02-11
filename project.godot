@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Platform Level Design Kit"
-run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Audio="*res://scripts/audio.gd"
-Globals="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/globals.gd"
+E="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/engine.gd"
+G="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/globals.gd"
 
 [display]
 

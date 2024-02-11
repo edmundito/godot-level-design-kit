@@ -1,21 +1,21 @@
 extends Node3D
 
-@export_group("Properties")
-@export var target: Node
-
+var target: Node
 var camera_rotation:Vector3
 var zoom = 10
 
 @onready var camera = $Camera
 
 func _init():
-	zoom = Globals.config.zoom_initial
+	zoom = G.config.zoom_initial
 
 func _ready():
 	camera_rotation = rotation_degrees # Initial rotation
 
 func _physics_process(delta):
-	
+	if target == null:
+		return
+		
 	# Set position and rotation to targets
 	
 	self.position = self.position.lerp(target.position, delta * 4)
@@ -36,11 +36,11 @@ func handle_input(delta):
 	input.y = Input.get_axis("camera_left", "camera_right")
 	input.x = Input.get_axis("camera_up", "camera_down")
 	
-	camera_rotation += input.limit_length(1.0) * Globals.config.rotation_speed * delta
+	camera_rotation += input.limit_length(1.0) * G.config.rotation_speed * delta
 	camera_rotation.x = clamp(camera_rotation.x, -80, -10)
 	
 	# Zooming
 	
-	if Globals.config.zoom_enabled:
-		zoom += Input.get_axis("zoom_in", "zoom_out") * Globals.config.zoom_speed * delta
-		zoom = clamp(zoom, Globals.config.zoom_maximum, Globals.config.zoom_minimum)
+	if G.config.zoom_enabled:
+		zoom += Input.get_axis("zoom_in", "zoom_out") * G.config.zoom_speed * delta
+		zoom = clamp(zoom, G.config.zoom_maximum, G.config.zoom_minimum)
