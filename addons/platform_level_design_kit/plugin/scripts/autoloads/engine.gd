@@ -3,7 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var main_scene: Node3D = load("res://scenes/main.tscn").instantiate()
+	var main_scene: Node3D = load("res://addons/platform_level_design_kit/plugin/scenes/engine/main.tscn").instantiate()
 	add_child(main_scene)
 	pass # Replace with function body.
 

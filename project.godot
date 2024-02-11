@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Audio="*res://scripts/audio.gd"
+Audio="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/audio.gd"
 E="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/engine.gd"
 G="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/globals.gd"
 
