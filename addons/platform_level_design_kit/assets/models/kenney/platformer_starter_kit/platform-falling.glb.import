@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dtjvjdjl8cs6e"
-path="res://.godot/imported/flag.glb-2eaecf25b89f9955421c2f751f38681d.scn"
+uid="uid://biyd6x403gvny"
+path="res://.godot/imported/platform-falling.glb-e2adb32de3fe6043ebe9f5bd48935e99.scn"
 
 [deps]
 
-source_file="res://addons/platform_level_design_kit/assets/models/flag.glb"
-dest_files=["res://.godot/imported/flag.glb-2eaecf25b89f9955421c2f751f38681d.scn"]
+source_file="res://addons/platform_level_design_kit/assets/models/kenney/platformer_starter_kit/platform-falling.glb"
+dest_files=["res://.godot/imported/platform-falling.glb-e2adb32de3fe6043ebe9f5bd48935e99.scn"]
 
 [params]
 

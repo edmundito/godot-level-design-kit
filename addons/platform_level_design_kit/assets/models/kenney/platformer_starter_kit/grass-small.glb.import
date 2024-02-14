@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://blqf5cwsk25xj"
-path="res://.godot/imported/grass.glb-d22dd735f4fb93b76b8b24a5ec023afa.scn"
+uid="uid://dkw27llxh1d4w"
+path="res://.godot/imported/grass-small.glb-e9ace08ea5d69d8b5c8c5917feb0dad1.scn"
 
 [deps]
 
-source_file="res://addons/platform_level_design_kit/assets/models/grass.glb"
-dest_files=["res://.godot/imported/grass.glb-d22dd735f4fb93b76b8b24a5ec023afa.scn"]
+source_file="res://addons/platform_level_design_kit/assets/models/kenney/platformer_starter_kit/grass-small.glb"
+dest_files=["res://.godot/imported/grass-small.glb-e9ace08ea5d69d8b5c8c5917feb0dad1.scn"]
 
 [params]
 

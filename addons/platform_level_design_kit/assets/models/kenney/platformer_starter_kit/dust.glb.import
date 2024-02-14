@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://brg64eln7l7wv"
-path="res://.godot/imported/dust.glb-5d0a49b02c516c0bc02dab8908ee1949.scn"
+path="res://.godot/imported/dust.glb-110b284d59ed86e3952ef911197baf2c.scn"
 
 [deps]
 
-source_file="res://addons/platform_level_design_kit/assets/models/dust.glb"
-dest_files=["res://.godot/imported/dust.glb-5d0a49b02c516c0bc02dab8908ee1949.scn"]
+source_file="res://addons/platform_level_design_kit/assets/models/kenney/platformer_starter_kit/dust.glb"
+dest_files=["res://.godot/imported/dust.glb-110b284d59ed86e3952ef911197baf2c.scn"]
 
 [params]
 

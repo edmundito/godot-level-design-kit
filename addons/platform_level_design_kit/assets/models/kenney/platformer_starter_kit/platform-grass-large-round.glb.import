@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://e64a4omgpcs"
-path="res://.godot/imported/coin.glb-9ebbb31dce243b584109605c75402e41.scn"
+uid="uid://fqfc0dtl2xlc"
+path="res://.godot/imported/platform-grass-large-round.glb-73c685442b594561cd3d7e554a6bf782.scn"
 
 [deps]
 
-source_file="res://addons/platform_level_design_kit/assets/models/coin.glb"
-dest_files=["res://.godot/imported/coin.glb-9ebbb31dce243b584109605c75402e41.scn"]
+source_file="res://addons/platform_level_design_kit/assets/models/kenney/platformer_starter_kit/platform-grass-large-round.glb"
+dest_files=["res://.godot/imported/platform-grass-large-round.glb-73c685442b594561cd3d7e554a6bf782.scn"]
 
 [params]
 

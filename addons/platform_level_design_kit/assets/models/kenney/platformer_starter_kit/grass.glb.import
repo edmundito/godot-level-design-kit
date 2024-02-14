@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://biyd6x403gvny"
-path="res://.godot/imported/platform-falling.glb-a60f4b3bbd526495c066ba4818d8fde1.scn"
+uid="uid://blqf5cwsk25xj"
+path="res://.godot/imported/grass.glb-f4ad1b718b443ed2ba8daa4879b6a330.scn"
 
 [deps]
 
-source_file="res://addons/platform_level_design_kit/assets/models/platform-falling.glb"
-dest_files=["res://.godot/imported/platform-falling.glb-a60f4b3bbd526495c066ba4818d8fde1.scn"]
+source_file="res://addons/platform_level_design_kit/assets/models/kenney/platformer_starter_kit/grass.glb"
+dest_files=["res://.godot/imported/grass.glb-f4ad1b718b443ed2ba8daa4879b6a330.scn"]
 
 [params]
 
