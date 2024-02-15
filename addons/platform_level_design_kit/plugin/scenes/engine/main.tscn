@@ -6,7 +6,7 @@
 [node name="Main" type="Node3D"]
 
 [node name="View" type="Node3D" parent="."]
-transform = Transform3D(0.707107, -0.298836, 0.640856, 0, 0.906308, 0.422618, -0.707107, -0.298836, 0.640856, 0, 0, 0)
+transform = Transform3D(1, -4.96191e-16, 3.16108e-16, 3.16108e-16, 0.906308, 0.422618, -4.96191e-16, -0.422618, 0.906307, 0, 0, 0)
 script = ExtResource("1_tecwc")
 
 [node name="Camera" type="Camera3D" parent="View"]

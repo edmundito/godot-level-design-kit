@@ -23,8 +23,8 @@ navigation_type = 0
 use_collision = true
 
 [node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6213, 0, -1.50204e-05)
-size = Vector3(50, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6213, -2, -1.50204e-05)
+size = Vector3(50, 5, 1)
 material = SubResource("StandardMaterial3D_br7yj")
 
 [node name="Platform1" type="CSGBox3D" parent="GroundAndPlatforms"]
