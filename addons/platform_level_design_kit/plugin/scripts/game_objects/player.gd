@@ -4,7 +4,7 @@ const View = preload("../engine/view.gd")
 var view: View
 
 var movement_velocity: Vector3
-var rotation_direction: float
+var rotation_direction: float = 1.5
 var gravity = 0
 
 var previously_floored = false
@@ -76,7 +76,7 @@ func _respawn() -> void:
 	velocity = Vector3(0, 0, 0)
 	model.scale = Vector3(1, 1, 1)
 	movement_velocity = Vector3(0, 0, 0)
-	rotation_direction = 0
+	rotation_direction = 1.5
 	gravity = 0
 	
 # Handle animation(s)
@@ -101,7 +101,7 @@ func handle_effects():
 func _handle_movement(delta):
 	var input := Vector3.ZERO
 	
-	if G.config.is_3d_navigation():
+	if E.level.is_3d_navigation():
 		input.x = Input.get_axis("move_left", "move_right")
 		input.z = Input.get_axis("move_forward", "move_back")
 		input = input.rotated(Vector3.UP, view.rotation.y).normalized()
@@ -134,7 +134,7 @@ func handle_controls(delta):
 
 func handle_gravity(delta):
 	
-	gravity += G.config.gravity * delta
+	gravity += E.level.gravity * delta
 	
 	if gravity > 0 and is_on_floor():
 		

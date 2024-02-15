@@ -1,12 +1,6 @@
 class_name GameConfig
 extends Resource
 
-enum NavigationType { TWO_DIMENSIONAL, THREE_DIMENSIONAL }
-
-@export_group("World")
-@export var navigation_type: NavigationType = NavigationType.THREE_DIMENSIONAL
-@export var gravity: float = 25
-
 @export_group("Camera")
 @export_range(1, 179) var field_of_view: int = 40
 
@@ -27,6 +21,3 @@ enum NavigationType { TWO_DIMENSIONAL, THREE_DIMENSIONAL }
 
 func _init():
 	pass
-	
-func is_3d_navigation() -> bool:
-	return navigation_type == NavigationType.THREE_DIMENSIONAL

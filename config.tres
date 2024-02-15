@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_py3dd")
-navigation_type = 1
+navigation_type = 0
 gravity = 25.0
 field_of_view = 40
 zoom_enabled = false
