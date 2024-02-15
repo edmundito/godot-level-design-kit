@@ -1,8 +1,11 @@
 extends Node
 
-signal coin_collected
+signal coin_collected(coins: int)
+signal show_message(message: String)
+signal completed_goal()
 
 var level: Level
+var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

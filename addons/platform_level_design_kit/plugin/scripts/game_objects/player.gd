@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 const View = preload("../engine/view.gd")
@@ -12,7 +13,8 @@ var previously_floored = false
 var jump_single = true
 var jump_double = true
 
-var coins = 0
+var coins := 0
+var controls_enabled := true
 
 @onready var start_position := Vector3(self.position)
 @onready var start_rotation := Vector3(self.rotation)
@@ -24,13 +26,22 @@ var coins = 0
 # Functions
 
 func _ready() -> void:
+	E.player = self
 	view = E.get_node("Main/View")
 	view.target = self
+	E.completed_goal.connect(_on_completed_goal)
+	
+	
+func _on_completed_goal():
+	_stop_moving()
+	controls_enabled = false
+	pass
 
 func _physics_process(delta):
 	# Handle functions
 	
-	handle_controls(delta)
+	if controls_enabled:
+		handle_controls(delta)
 	handle_gravity(delta)
 	
 	handle_effects()
@@ -70,6 +81,9 @@ func _physics_process(delta):
 	
 	previously_floored = is_on_floor()
 
+func _stop_moving() -> void:
+	movement_velocity = Vector3(0, 0, 0)
+	
 func _respawn() -> void:
 	rotation = start_rotation
 	position = start_position
