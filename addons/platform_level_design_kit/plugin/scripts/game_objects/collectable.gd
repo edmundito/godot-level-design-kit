@@ -21,7 +21,6 @@ func _on_body_entered(body: Node3D) -> void:
 		
 	Audio.play("res://addons/platform_level_design_kit/assets/sound_fx/coin.ogg") # Play sound
 	queue_free()
-	$Mesh.queue_free()
 
 func _process(delta: float) -> void:
 	if spin_speed > 0:

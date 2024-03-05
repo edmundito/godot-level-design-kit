@@ -2,6 +2,7 @@ extends Node
 
 signal collected_item(node: Node)
 signal coin_collected(coins: int)
+signal gem_collected(gems: int)
 signal show_message(message: String)
 signal completed_goal()
 signal level_ready(level: Level)
@@ -9,6 +10,7 @@ signal level_ready(level: Level)
 var level: Level : set = set_level
 var player: Player
 var coins := 0
+var gems := 0
 
 func set_level(l: Level) -> void:
 	level = l
@@ -32,3 +34,6 @@ func _on_collected_item(item: Node) -> void:
 	if item.is_in_group("coin"):
 		coins += 1
 		coin_collected.emit(coins)
+	elif item.is_in_group("gem"):
+		gems += 1
+		gem_collected.emit(gems)

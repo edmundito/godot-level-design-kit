@@ -6,10 +6,14 @@ func _init():
 func _ready():
 	$Message.visible = false
 	E.coin_collected.connect(_on_coin_collected)
+	E.gem_collected.connect(_on_gem_collected)
 	E.show_message.connect(_on_show_message)
 
 func _on_coin_collected(coins):
-	$Coins.text = str(coins)
+	%Coins.text = str(coins)
+	
+func _on_gem_collected(gems):
+	%Gems.text = str(gems)
 	
 func _on_show_message(message: String) -> void:
 	$Message.text = message

@@ -18,6 +18,6 @@ func _ready():
 		if child is CSGCombiner3D:
 			(child as CSGCombiner3D).use_collision = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previouws frame.
 func _process(delta):
 	pass
