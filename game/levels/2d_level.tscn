@@ -19,6 +19,7 @@ uv1_triplanar = true
 [node name="Root" type="Node3D"]
 script = ExtResource("1_r438d")
 navigation_type = 0
+metadata/_edit_lock_ = true
 
 [node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
 script = ExtResource("2_grxuh")

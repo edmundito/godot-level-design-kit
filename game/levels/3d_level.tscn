@@ -17,6 +17,7 @@ uv1_triplanar = true
 
 [node name="Root" type="Node3D"]
 script = ExtResource("1_4wtkf")
+metadata/_edit_lock_ = true
 
 [node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
 use_collision = true
