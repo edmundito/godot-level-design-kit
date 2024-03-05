@@ -13,7 +13,6 @@ var previously_floored = false
 var jump_single = true
 var jump_double = true
 
-var coins := 0
 var controls_enabled := true
 
 @onready var start_position := Vector3(self.position)
@@ -168,8 +167,3 @@ func jump():
 	jump_single = false
 	jump_double = G.config.double_jump
 
-# Collecting coins
-
-func collect_coin():
-	coins += 1
-	E.coin_collected.emit(coins)

@@ -104,6 +104,11 @@ invert_camera={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="ground"
+3d_physics/layer_2="collectable"
+
 [rendering]
 
 anti_aliasing/quality/screen_space_aa=1
