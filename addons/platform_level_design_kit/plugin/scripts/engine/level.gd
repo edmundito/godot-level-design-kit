@@ -12,6 +12,8 @@ func is_3d_navigation() -> bool:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	E.level = self
+	position = Vector3(0, 0, 0)
+	rotation = Vector3(0, 0, 0)
 	
 	# Enable collisions in CSGs
 	for child in get_children():
