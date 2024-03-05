@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvk7nwys7nkqt"]
+[gd_scene load_steps=10 format=3 uid="uid://dvk7nwys7nkqt"]
 
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="1_hwlvr"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_r438d"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://addons/platform_level_design_kit/game_objects/player/player.tscn" id="2_4on3y"]
+[ext_resource type="Script" path="res://game/levels/GroundAndPlatforms.gd" id="2_grxuh"]
 [ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://addons/platform_level_design_kit/game_objects/collectables/coin.tscn" id="3_s6wtc"]
 [ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://addons/platform_level_design_kit/game_objects/gates/exit_door.tscn" id="5_esaup"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://addons/platform_level_design_kit/plugin/scenes/engine/main-environment.tres" id="5_oitqd"]
@@ -20,7 +21,7 @@ script = ExtResource("1_r438d")
 navigation_type = 0
 
 [node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
-use_collision = true
+script = ExtResource("2_grxuh")
 
 [node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6213, -2, -1.50204e-05)
@@ -34,6 +35,12 @@ material = SubResource("StandardMaterial3D_hb8xu")
 
 [node name="Platform2" type="CSGBox3D" parent="GroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.25, 0)
+size = Vector3(1, 1.5, 1)
+material = SubResource("StandardMaterial3D_hb8xu")
+
+[node name="Platform3" type="CSGBox3D" parent="GroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5566, 1.25, 0)
+operation = 2
 size = Vector3(1, 1.5, 1)
 material = SubResource("StandardMaterial3D_hb8xu")
 

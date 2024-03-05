@@ -4,8 +4,6 @@
 
 [resource]
 script = ExtResource("1_py3dd")
-navigation_type = 0
-gravity = 25.0
 field_of_view = 40
 zoom_enabled = false
 zoom_initial = 10
@@ -15,4 +13,4 @@ zoom_speed = 10
 rotation_speed = 120
 movement_speed = 250.0
 jump_strength = 7.0
-double_jump = false
+double_jump = true
