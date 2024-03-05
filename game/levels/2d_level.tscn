@@ -12,6 +12,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
 albedo_texture = ExtResource("1_hwlvr")
+uv1_offset = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tw82t"]
@@ -39,7 +40,7 @@ shadow_opacity = 0.75
 script = ExtResource("2_grxuh")
 
 [node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6213, -2, -1.00002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -2, -1)
 size = Vector3(50, 5, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
