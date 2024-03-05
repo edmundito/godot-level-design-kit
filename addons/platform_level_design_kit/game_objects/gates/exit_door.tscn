@@ -4,15 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://csclgrq426b5d" path="res://addons/platform_level_design_kit/assets/models/kenney/platformer_kit/doors/doorClosed.glb" id="2_vxd70"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2u4a"]
-size = Vector3(1.1, 1, 0.6)
+size = Vector3(1.5, 2, 1.5)
 
 [node name="ExitDoor" type="Area3D"]
 script = ExtResource("1_gqijx")
 
 [node name="Door" parent="." instance=ExtResource("2_vxd70")]
+transform = Transform3D(2.024, 0, 0, 0, 2.024, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 0)
+[node name="Trigger" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 1, -1.49012e-08)
 shape = SubResource("BoxShape3D_a2u4a")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

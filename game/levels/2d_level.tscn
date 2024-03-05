@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvk7nwys7nkqt"]
+[gd_scene load_steps=13 format=3 uid="uid://dvk7nwys7nkqt"]
 
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="1_hwlvr"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_r438d"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://addons/platform_level_design_kit/game_objects/player/player.tscn" id="2_4on3y"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/ground_and_platforms.gd" id="2_grxuh"]
 [ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://addons/platform_level_design_kit/game_objects/collectables/coin.tscn" id="3_s6wtc"]
+[ext_resource type="Texture2D" uid="uid://bviw25crl8ko4" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Purple/texture_02.png" id="4_skshy"]
+[ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_ursx7"]
 [ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://addons/platform_level_design_kit/game_objects/gates/exit_door.tscn" id="5_esaup"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://addons/platform_level_design_kit/plugin/scenes/engine/main-environment.tres" id="5_oitqd"]
 
@@ -12,37 +14,54 @@
 albedo_texture = ExtResource("1_hwlvr")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tw82t"]
+albedo_texture = ExtResource("4_skshy")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb8xu"]
-albedo_texture = ExtResource("1_hwlvr")
+albedo_texture = ExtResource("4_ursx7")
 uv1_triplanar = true
 
-[node name="Root" type="Node3D"]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_r438d")
 navigation_type = 0
 metadata/_edit_lock_ = true
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_oitqd")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.766044, -0.492404, 0.413176, 1.53238e-08, 0.642788, 0.766044, -0.642788, -0.586824, 0.492404, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.75
 
 [node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
 script = ExtResource("2_grxuh")
 
 [node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6213, -2, -1.50204e-05)
-size = Vector3(50, 5, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6213, -2, -1.00002)
+size = Vector3(50, 5, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
 [node name="Platform1" type="CSGBox3D" parent="GroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.25, 0)
 size = Vector3(1, 0.5, 1)
-material = SubResource("StandardMaterial3D_hb8xu")
+material = SubResource("StandardMaterial3D_tw82t")
 
 [node name="Platform2" type="CSGBox3D" parent="GroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.25, 0)
 size = Vector3(1, 1.5, 1)
-material = SubResource("StandardMaterial3D_hb8xu")
+material = SubResource("StandardMaterial3D_tw82t")
 
-[node name="Platform3" type="CSGBox3D" parent="GroundAndPlatforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5566, 1.25, 0)
+[node name="Hole1" type="CSGBox3D" parent="GroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5566, 0.25, -1)
 operation = 2
-size = Vector3(1, 1.5, 1)
+size = Vector3(1, 1.5, 5)
+material = SubResource("StandardMaterial3D_br7yj")
+
+[node name="Wall1" type="CSGBox3D" parent="GroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3066, 2, -1)
+size = Vector3(0.5, 3, 5)
 material = SubResource("StandardMaterial3D_hb8xu")
 
 [node name="Collectables" type="Node3D" parent="."]
@@ -53,11 +72,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0.5, 0)
 [node name="Objects" type="Node3D" parent="."]
 
 [node name="ExitDoor" parent="Objects" instance=ExtResource("5_esaup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0.5, -0.8)
 coins_required = 20
 
 [node name="Player" parent="." instance=ExtResource("2_4on3y")]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 2.08165e-12, 0.5, 2.08165e-12)
-
-[node name="Environment" type="WorldEnvironment" parent="."]
-environment = ExtResource("5_oitqd")
