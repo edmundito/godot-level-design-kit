@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://u7qtq6dpinpv"]
+[gd_scene load_steps=14 format=3 uid="uid://u7qtq6dpinpv"]
 
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_4wtkf"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="2_e0k6b"]
 [ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://addons/platform_level_design_kit/game_objects/collectables/coin.tscn" id="3_dn3qx"]
+[ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/ground_and_platforms.gd" id="3_opw7n"]
 [ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://addons/platform_level_design_kit/game_objects/gates/exit_door.tscn" id="4_6fmbm"]
 [ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_aw0as"]
 [ext_resource type="Texture2D" uid="uid://bviw25crl8ko4" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Purple/texture_02.png" id="5_bjpws"]
@@ -38,7 +39,7 @@ shadow_enabled = true
 shadow_opacity = 0.75
 
 [node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
-use_collision = true
+script = ExtResource("3_opw7n")
 
 [node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -9.5, 2.08165e-12)
