@@ -19,5 +19,8 @@ extends Resource
 @export var jump_strength: float = 7
 @export var double_jump: bool = false
 
+@export_group("Graphics")
+@export var particles_enabled := false
+
 func _init():
 	pass

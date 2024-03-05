@@ -3,6 +3,11 @@ extends Area3D
 var time := 0.0
 var grabbed := false
 
+func _ready() -> void:
+	if get_node("Particles") != null:
+		$Particles.visible = G.config.particles_enabled
+		$Particles.emitting = false
+
 # Collecting coins
 
 func _on_body_entered(body):

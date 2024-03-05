@@ -30,7 +30,9 @@ func _ready() -> void:
 	view = E.get_node("Main/View")
 	view.target = self
 	E.completed_goal.connect(_on_completed_goal)
-	
+	if get_node("ParticlesTrail") != null:
+		$ParticlesTrail.visible = G.config.particles_enabled
+		$ParticlesTrail.emitting = false
 	
 func _on_completed_goal():
 	_stop_moving()
