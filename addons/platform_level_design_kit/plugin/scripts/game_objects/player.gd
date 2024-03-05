@@ -67,8 +67,12 @@ func _physics_process(delta):
 	# Falling/respawning
 	
 	if position.y < -10:
-		_respawn()
-		return
+		E.player_hit.emit()
+		if E.hearts > 0:
+			Audio.play("res://addons/platform_level_design_kit/assets/sound_fx/fall.ogg")
+			_respawn()
+		else:
+			_stop_moving()
 	
 	# Animation for scale (jumping and landing)
 		

@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	var completed: bool = E.player.coins >= coins_required
+	var completed: bool = E.coins >= coins_required
 	var message: String = "You did it!" if completed else "You need %d coins to go through the door!" % coins_required
 	E.show_message.emit(message)
 	if completed:
