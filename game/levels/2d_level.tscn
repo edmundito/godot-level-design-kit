@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvk7nwys7nkqt"]
+[gd_scene load_steps=12 format=3 uid="uid://dvk7nwys7nkqt"]
 
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="1_hwlvr"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_r438d"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://addons/platform_level_design_kit/game_objects/player/player.tscn" id="2_4on3y"]
-[ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/ground_and_platforms.gd" id="2_grxuh"]
 [ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://addons/platform_level_design_kit/game_objects/collectables/coin.tscn" id="3_s6wtc"]
 [ext_resource type="Texture2D" uid="uid://bviw25crl8ko4" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Purple/texture_02.png" id="4_skshy"]
 [ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_ursx7"]
@@ -37,7 +36,6 @@ shadow_enabled = true
 shadow_opacity = 0.75
 
 [node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
-script = ExtResource("2_grxuh")
 
 [node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -2, -1)

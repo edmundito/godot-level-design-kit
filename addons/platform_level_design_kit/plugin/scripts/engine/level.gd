@@ -12,6 +12,11 @@ func is_3d_navigation() -> bool:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	E.level = self
+	
+	# Enable collisions in CSGs
+	for child in get_children():
+		if child is CSGCombiner3D:
+			(child as CSGCombiner3D).use_collision = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
