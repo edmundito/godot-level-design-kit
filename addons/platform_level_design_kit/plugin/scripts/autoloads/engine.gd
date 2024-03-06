@@ -1,6 +1,7 @@
 extends Node
 
 signal player_hit()
+signal entered_checkpoint(checkpoint: Checkpoint)
 signal collected_item(node: Node)
 signal coin_collected(coins: int)
 signal gem_collected(gems: int)

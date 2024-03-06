@@ -90,8 +90,8 @@ func _stop_moving() -> void:
 	movement_velocity = Vector3(0, 0, 0)
 	
 func _respawn() -> void:
-	rotation = start_rotation
-	position = start_position
+	position = Vector3(E.level.spawn_position)
+	rotation = Vector3(E.level.spawn_rotation)
 	velocity = Vector3(0, 0, 0)
 	model.scale = Vector3(1, 1, 1)
 	movement_velocity = Vector3(0, 0, 0)
