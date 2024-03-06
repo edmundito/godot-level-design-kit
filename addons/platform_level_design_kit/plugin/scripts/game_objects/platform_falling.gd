@@ -17,7 +17,6 @@ func _process(delta):
 
 func _on_body_entered(_body):
 	if !falling:
-		Audio.play("res://addons/platform_level_design_kit/assets/sound_fx/fall.ogg") # Play sound
 		scale = Vector3(1.25, 1, 1.25) # Animate scale
 		
 	falling = true
