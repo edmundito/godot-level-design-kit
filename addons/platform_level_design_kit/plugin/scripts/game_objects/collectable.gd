@@ -13,7 +13,7 @@ func _ready() -> void:
 		$Particles.emitting = false
 
 func _on_body_entered(body: Node3D) -> void:
-	if grabbed:
+	if grabbed or not body.is_in_group("player"):
 		return
 		
 	grabbed = true

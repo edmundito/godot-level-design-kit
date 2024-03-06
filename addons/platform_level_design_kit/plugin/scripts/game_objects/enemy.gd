@@ -65,6 +65,7 @@ func _physics_process(delta) -> void:
 		_patrol_process()
 
 	move_and_slide()
+	_check_collisions()
 	
 	if Vector2(velocity.z, velocity.x).length() > 0:
 		rotation_direction = Vector2(velocity.z, velocity.x).angle()
@@ -76,6 +77,14 @@ func _physics_process(delta) -> void:
 	else:
 		animation.play("idle", 0.5)
 
+func _check_collisions() -> void:
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body := collision.get_collider()
+		if body.is_in_group("player"):
+			E.player_hit.emit()
+			return
+	
 func _on_wait_timer_timeout() -> void:
 	_timer.stop()
 	_increment_path_index()

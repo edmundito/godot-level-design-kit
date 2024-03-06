@@ -29,6 +29,7 @@ func _ready() -> void:
 	view = E.get_node("Main/View")
 	view.target = self
 	E.completed_goal.connect(_on_completed_goal)
+	E.player_hit.connect(_on_player_hit)
 	if get_node("ParticlesTrail") != null:
 		$ParticlesTrail.visible = G.config.particles_enabled
 		$ParticlesTrail.emitting = false
@@ -69,7 +70,6 @@ func _physics_process(delta):
 	if position.y < -10:
 		E.player_hit.emit()
 		if E.hearts > 0:
-			Audio.play("res://addons/platform_level_design_kit/assets/sound_fx/fall.ogg")
 			_respawn()
 		else:
 			_stop_moving()
@@ -90,6 +90,7 @@ func _stop_moving() -> void:
 	movement_velocity = Vector3(0, 0, 0)
 	
 func _respawn() -> void:
+	Audio.play("res://addons/platform_level_design_kit/assets/sound_fx/fall.ogg")
 	position = Vector3(E.level.spawn_position)
 	rotation = Vector3(E.level.spawn_rotation)
 	velocity = Vector3(0, 0, 0)
@@ -171,3 +172,5 @@ func jump():
 	jump_single = false
 	jump_double = G.config.double_jump
 
+func _on_player_hit():
+	_respawn()
