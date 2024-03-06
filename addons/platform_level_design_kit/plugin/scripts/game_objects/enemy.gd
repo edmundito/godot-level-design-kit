@@ -3,12 +3,15 @@ extends CharacterBody3D
 
 @export var speed := 3.0
 @export var patrol_paths: Array[PatrolPath] = []
+## Enable logging in output window
+@export var show_path_changes_in_log := false
 
 @onready var animation: AnimationPlayer = $Character/AnimationPlayer as AnimationPlayer
 @onready var _timer: Timer = $WaitTimer as Timer
 
 var path_index := -1
 var path_start_pos: Vector3
+var rotation_direction: float = 1.5
 
 func _ready() -> void:
 	if patrol_paths.size() > 0:
@@ -20,19 +23,21 @@ func _increment_path_index():
 	if path_index >= patrol_paths.size():
 		path_index = 0
 	
-	print("Incremented path index for \"%s\" to %d" % [self.name, path_index])
+	if show_path_changes_in_log:
+		print("Incremented path index for \"%s\" to %d" % [self.name, path_index])
 		
 func _patrol_process() -> void:
 	var path := patrol_paths[path_index]
 	
 	if not path:
-		push_warning("No Path found for \"%s\" in index %d", [self.name, path_index])
+		push_error("No Path found for \"%s\" in index %d", [self.name, path_index])
 		_increment_path_index()
 		return
 		
 	if not path.has_direction():
 		if _timer.is_stopped():
-			print("Start %s timer for \"%d\" seconds" % [self.name, path.amount])
+			if show_path_changes_in_log:
+				print("Start %s timer for \"%d\" seconds" % [self.name, path.amount])
 			_timer.start(path.amount)
 		return
 	
@@ -61,10 +66,16 @@ func _physics_process(delta) -> void:
 
 	move_and_slide()
 	
+	if Vector2(velocity.z, velocity.x).length() > 0:
+		rotation_direction = Vector2(velocity.z, velocity.x).angle()
+		
+	$Character.rotation.y = lerp_angle($Character.rotation.y, rotation_direction, delta * 10)
+	
 	if abs(velocity.x) > 1 or abs(velocity.z) > 1:
 		animation.play("walk", 0.5)
 	else:
 		animation.play("idle", 0.5)
 
 func _on_wait_timer_timeout() -> void:
+	_timer.stop()
 	_increment_path_index()
