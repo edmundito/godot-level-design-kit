@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://u7qtq6dpinpv"]
+[gd_scene load_steps=26 format=3 uid="uid://u7qtq6dpinpv"]
 
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_4wtkf"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="2_e0k6b"]
 [ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://addons/platform_level_design_kit/game_objects/collectables/coin.tscn" id="3_dn3qx"]
+[ext_resource type="Texture2D" uid="uid://ykdxfsx4icw2" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Red/texture_10.png" id="3_nbcf2"]
 [ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://addons/platform_level_design_kit/game_objects/gates/exit_door.tscn" id="4_6fmbm"]
 [ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_aw0as"]
 [ext_resource type="Texture2D" uid="uid://bviw25crl8ko4" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Purple/texture_02.png" id="5_bjpws"]
@@ -31,6 +32,11 @@ albedo_texture = ExtResource("5_bjpws")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v41m"]
 albedo_texture = ExtResource("2_e0k6b")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwc8j"]
+albedo_texture = ExtResource("3_nbcf2")
+subsurf_scatter_enabled = true
 uv1_triplanar = true
 
 [sub_resource type="Resource" id="Resource_ksc5u"]
@@ -76,39 +82,47 @@ light_energy = 0.5
 shadow_enabled = true
 shadow_opacity = 0.75
 
-[node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
+[node name="StaticGroundAndPlatforms" type="CSGCombiner3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Ground1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -10, 2.08165e-12)
 size = Vector3(25, 20, 25)
 material = SubResource("StandardMaterial3D_br7yj")
 
-[node name="Hole1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Hole1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0566, -0.25, 5)
 operation = 2
 size = Vector3(4, 1.5, 5)
 material = SubResource("StandardMaterial3D_2yprf")
 
-[node name="Wall1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Wall1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.307, 1.5, 2.08165e-12)
 size = Vector3(0.5, 3, 5)
 material = SubResource("StandardMaterial3D_qopi5")
 
-[node name="Platform1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Platform1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, 0)
 size = Vector3(1, 0.5, 1)
 material = SubResource("StandardMaterial3D_0lscd")
 
-[node name="Platform2" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Platform2" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.75, 0)
 size = Vector3(1, 1.5, 1)
 material = SubResource("StandardMaterial3D_0lscd")
 
-[node name="Ramp1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Ramp1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 11.0566, 0.05, 5)
 size = Vector3(4, 1, 5)
 material = SubResource("StandardMaterial3D_5v41m")
+
+[node name="Lava" type="CSGCombiner3D" parent="." groups=["lava"]]
+metadata/_edit_lock_ = true
+
+[node name="Lava1" type="CSGBox3D" parent="Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0566, -0.45, -6)
+size = Vector3(4, 1, 4)
+material = SubResource("StandardMaterial3D_rwc8j")
 
 [node name="Collectables" type="Node3D" parent="."]
 metadata/_edit_lock_ = true

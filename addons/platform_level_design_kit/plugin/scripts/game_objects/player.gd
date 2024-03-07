@@ -77,7 +77,8 @@ func _physics_process(delta):
 	# Animation for scale (jumping and landing)
 		
 	model.scale = model.scale.lerp(Vector3(1, 1, 1), delta * 10)
-	
+	_check_collisions()
+		
 	# Animation when landing
 	
 	if is_on_floor() and gravity > 2 and !previously_floored:
@@ -85,6 +86,14 @@ func _physics_process(delta):
 		Audio.play("res://addons/platform_level_design_kit/assets/sound_fx/land.ogg")
 	
 	previously_floored = is_on_floor()
+	
+func _check_collisions() -> void:
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body := collision.get_collider()
+		if body.is_in_group("lava"):
+			E.player_hit.emit()
+			return
 
 func _stop_moving() -> void:
 	movement_velocity = Vector3(0, 0, 0)

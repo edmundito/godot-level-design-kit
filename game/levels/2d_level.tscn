@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dvk7nwys7nkqt"]
+[gd_scene load_steps=22 format=3 uid="uid://dvk7nwys7nkqt"]
 
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="1_hwlvr"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_r438d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_ursx7"]
 [ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://addons/platform_level_design_kit/game_objects/gates/exit_door.tscn" id="5_esaup"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://addons/platform_level_design_kit/plugin/scenes/engine/main-environment.tres" id="5_oitqd"]
+[ext_resource type="Texture2D" uid="uid://ykdxfsx4icw2" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Red/texture_10.png" id="6_ajwvn"]
 [ext_resource type="PackedScene" uid="uid://bn1toqih8nu6g" path="res://addons/platform_level_design_kit/game_objects/collectables/gem.tscn" id="7_jpjfj"]
 [ext_resource type="PackedScene" uid="uid://cilpvbr4vkpib" path="res://addons/platform_level_design_kit/game_objects/collectables/heart.tscn" id="8_5drfp"]
 [ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://addons/platform_level_design_kit/game_objects/gates/checkpoint.tscn" id="8_miclv"]
@@ -24,6 +25,11 @@ albedo_texture = ExtResource("4_skshy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb8xu"]
 albedo_texture = ExtResource("4_ursx7")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdvo5"]
+albedo_texture = ExtResource("6_ajwvn")
+subsurf_scatter_enabled = true
 uv1_triplanar = true
 
 [sub_resource type="Resource" id="Resource_ltyah"]
@@ -58,45 +64,53 @@ light_energy = 0.5
 shadow_enabled = true
 shadow_opacity = 0.75
 
-[node name="GroundAndPlatforms" type="CSGCombiner3D" parent="."]
+[node name="StaticGroundAndPlatforms" type="CSGCombiner3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Ground1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Ground1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -2.5, -1)
 size = Vector3(50, 5, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
-[node name="Platform1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Platform1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, 0)
 size = Vector3(1, 0.5, 1)
 material = SubResource("StandardMaterial3D_tw82t")
 
-[node name="Platform2" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Platform2" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.75, 0)
 size = Vector3(1, 1.5, 1)
 material = SubResource("StandardMaterial3D_tw82t")
 
-[node name="Hole1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Hole1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5566, 0.25, -1)
 operation = 2
 size = Vector3(1, 1.5, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
-[node name="Hole2" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Hole2" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0566, -2.5, -1)
 operation = 2
 size = Vector3(1.5, 7, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
-[node name="Ramp1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Ramp1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0, 1, 35.4391, -0.0250001, -1)
 size = Vector3(1, 4, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
-[node name="Wall1" type="CSGBox3D" parent="GroundAndPlatforms"]
+[node name="Wall1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3066, 1.5, -1)
 size = Vector3(0.5, 3, 5)
 material = SubResource("StandardMaterial3D_hb8xu")
+
+[node name="Lava" type="CSGCombiner3D" parent="." groups=["lava"]]
+metadata/_edit_lock_ = true
+
+[node name="Lava1" type="CSGBox3D" parent="Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, -0.45, -1)
+size = Vector3(2, 1, 5)
+material = SubResource("StandardMaterial3D_tdvo5")
 
 [node name="Collectables" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
