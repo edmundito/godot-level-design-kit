@@ -20,3 +20,4 @@ func _on_body_entered(body):
 	if completed:
 		E.completed_goal.emit()
 		
+

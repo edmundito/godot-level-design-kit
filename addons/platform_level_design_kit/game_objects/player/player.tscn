@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://addons/platform_level_design_kit/assets/sound_fx/walking.ogg" id="5_ics1s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
-radius = 0.3
+radius = 0.431871
 height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7stj"]
@@ -30,7 +30,7 @@ collision_mask = 3
 script = ExtResource("1_2ivii")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 1.12238e-23, 0, 1.12238e-23, 1, -2.1684e-19, 0.55, 0)
 shape = SubResource("CapsuleShape3D_gdq8c")
 
 [node name="Character" parent="." instance=ExtResource("2_tvxeq")]

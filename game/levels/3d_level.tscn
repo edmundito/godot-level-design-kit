@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://u7qtq6dpinpv"]
+[gd_scene load_steps=31 format=3 uid="uid://u7qtq6dpinpv"]
 
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_4wtkf"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="2_e0k6b"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://addons/platform_level_design_kit/game_objects/gates/checkpoint.tscn" id="8_iwdui"]
 [ext_resource type="PackedScene" uid="uid://cilpvbr4vkpib" path="res://addons/platform_level_design_kit/game_objects/collectables/heart.tscn" id="8_ymg4b"]
 [ext_resource type="PackedScene" uid="uid://y2i4r62hbec8" path="res://addons/platform_level_design_kit/game_objects/enemies/ghost.tscn" id="12_1n5xr"]
+[ext_resource type="PackedScene" uid="uid://bj83qd635hwdv" path="res://addons/platform_level_design_kit/game_objects/platforms/moving_platform.tscn" id="12_dqbx2"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/resources/patrol_path.gd" id="13_c858d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
@@ -39,34 +40,67 @@ albedo_texture = ExtResource("3_nbcf2")
 subsurf_scatter_enabled = true
 uv1_triplanar = true
 
+[sub_resource type="Resource" id="Resource_c56fv"]
+script = ExtResource("13_c858d")
+amount = 3.0
+x_direction = 1
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_q0cio"]
+script = ExtResource("13_c858d")
+amount = 3.0
+x_direction = 0
+y_direction = 1
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_5if5t"]
+script = ExtResource("13_c858d")
+amount = 3.0
+x_direction = 2
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_v312u"]
+script = ExtResource("13_c858d")
+amount = 3.0
+x_direction = 0
+y_direction = 2
+z_direction = 0
+
 [sub_resource type="Resource" id="Resource_ksc5u"]
 script = ExtResource("13_c858d")
 amount = 3.0
 x_direction = 0
+y_direction = 0
 z_direction = 1
 
 [sub_resource type="Resource" id="Resource_ltyah"]
 script = ExtResource("13_c858d")
 amount = 5.0
 x_direction = 1
+y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_yt3oc"]
 script = ExtResource("13_c858d")
 amount = 3.0
 x_direction = 0
+y_direction = 0
 z_direction = 2
 
 [sub_resource type="Resource" id="Resource_whjkd"]
 script = ExtResource("13_c858d")
 amount = 5.0
 x_direction = 2
+y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_w0uiw"]
 script = ExtResource("13_c858d")
 amount = 4.0
 x_direction = 0
+y_direction = 0
 z_direction = 0
 
 [node name="Level" type="Node3D"]
@@ -141,13 +175,19 @@ metadata/_edit_lock_ = true
 
 [node name="ExitDoor" parent="Objects" instance=ExtResource("4_6fmbm")]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 8.6, 2.08165e-12, 0)
-coins_required = 20
+coins_required = 0
 
 [node name="Checkpoint1" parent="Objects" instance=ExtResource("8_iwdui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.08165e-12, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.08165e-12, 2)
 
 [node name="Checkpoint2" parent="Objects" instance=ExtResource("8_iwdui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.08165e-12, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, 5)
+
+[node name="MovingPlatforms" type="Node3D" parent="."]
+
+[node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("12_dqbx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 8)
+patrol_paths = Array[ExtResource("13_c858d")]([SubResource("Resource_c56fv"), SubResource("Resource_q0cio"), SubResource("Resource_5if5t"), SubResource("Resource_v312u")])
 
 [node name="Enemies" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
@@ -157,4 +197,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, -2)
 patrol_paths = Array[ExtResource("13_c858d")]([SubResource("Resource_ksc5u"), SubResource("Resource_ltyah"), SubResource("Resource_yt3oc"), SubResource("Resource_whjkd"), SubResource("Resource_w0uiw")])
 
 [node name="Player" parent="." instance=ExtResource("5_e1470")]
-transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 2.08165e-12, 2.08165e-12, 2.08165e-12)

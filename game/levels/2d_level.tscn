@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvk7nwys7nkqt"]
+[gd_scene load_steps=27 format=3 uid="uid://dvk7nwys7nkqt"]
 
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="1_hwlvr"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_r438d"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://addons/platform_level_design_kit/game_objects/gates/checkpoint.tscn" id="8_miclv"]
 [ext_resource type="PackedScene" uid="uid://y2i4r62hbec8" path="res://addons/platform_level_design_kit/game_objects/enemies/ghost.tscn" id="11_qfb4i"]
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/resources/patrol_path.gd" id="12_gryck"]
+[ext_resource type="PackedScene" uid="uid://bj83qd635hwdv" path="res://addons/platform_level_design_kit/game_objects/platforms/moving_platform.tscn" id="12_va2jq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
 albedo_texture = ExtResource("1_hwlvr")
@@ -32,22 +33,53 @@ albedo_texture = ExtResource("6_ajwvn")
 subsurf_scatter_enabled = true
 uv1_triplanar = true
 
+[sub_resource type="Resource" id="Resource_amvlu"]
+script = ExtResource("12_gryck")
+amount = 2.0
+x_direction = 1
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_io3r4"]
+script = ExtResource("12_gryck")
+amount = 2.0
+x_direction = 0
+y_direction = 1
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_ljvxc"]
+script = ExtResource("12_gryck")
+amount = 2.0
+x_direction = 2
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_aglkw"]
+script = ExtResource("12_gryck")
+amount = 2.0
+x_direction = 0
+y_direction = 2
+z_direction = 0
+
 [sub_resource type="Resource" id="Resource_ltyah"]
 script = ExtResource("12_gryck")
 amount = 5.0
 x_direction = 1
+y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_w0uiw"]
 script = ExtResource("12_gryck")
 amount = 4.0
 x_direction = 0
+y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_whjkd"]
 script = ExtResource("12_gryck")
 amount = 5.0
 x_direction = 2
+y_direction = 0
 z_direction = 0
 
 [node name="Level" type="Node3D"]
@@ -136,6 +168,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.08165e-12, 2.08165e-12)
 
 [node name="Checkpoint2" parent="Objects" instance=ExtResource("8_miclv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2.08165e-12, 2.08165e-12)
+
+[node name="MovingPlatforms" type="Node3D" parent="."]
+
+[node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("12_va2jq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 2.08165e-12)
+patrol_paths = Array[ExtResource("12_gryck")]([SubResource("Resource_amvlu"), SubResource("Resource_io3r4"), SubResource("Resource_ljvxc"), SubResource("Resource_aglkw")])
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)

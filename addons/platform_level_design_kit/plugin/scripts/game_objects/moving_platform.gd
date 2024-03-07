@@ -1,17 +1,17 @@
-class_name Enemy
-extends CharacterBody3D
+class_name MovingPlatform
+extends StaticBody3D
 
 @export var speed := 1.0
 @export var patrol_paths: Array[PatrolPath] = []
 ## Enable logging in output window
 @export var show_path_changes_in_log := false
 
-@onready var animation: AnimationPlayer = $Character/AnimationPlayer as AnimationPlayer
 @onready var _timer: Timer = $WaitTimer as Timer
 
 var path_index := -1
 var path_start_pos: Vector3
 var rotation_direction: float = 1.5
+var velocity := Vector3()
 
 func _ready() -> void:
 	if patrol_paths.size() > 0:
@@ -26,6 +26,10 @@ func _increment_path_index() -> void:
 	if show_path_changes_in_log:
 		print("Incremented path index for \"%s\" to %d" % [self.name, path_index])
 		
+func _on_wait_timer_timeout() -> void:
+	_timer.stop()
+	_increment_path_index()
+	
 func _patrol_process() -> void:
 	var path := patrol_paths[path_index]
 	
@@ -63,28 +67,6 @@ func _patrol_process() -> void:
 func _physics_process(delta) -> void:	
 	if path_index >= 0:
 		_patrol_process()
-
-	move_and_slide()
-	_check_collisions()
 	
-	if Vector2(velocity.z, velocity.x).length() > 0:
-		rotation_direction = Vector2(velocity.z, velocity.x).angle()
-		
-	$Character.rotation.y = lerp_angle($Character.rotation.y, rotation_direction, delta * 10)
-	
-	if abs(velocity.x) > 1 or abs(velocity.z) > 1 or abs(velocity.y) or abs(velocity.z) > 1:
-		animation.play("walk", 0.5)
-	else:
-		animation.play("idle", 0.5)
-
-func _check_collisions() -> void:
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		var body := collision.get_collider()
-		if body.is_in_group("player"):
-			E.player_hit.emit()
-			return
-	
-func _on_wait_timer_timeout() -> void:
-	_timer.stop()
-	_increment_path_index()
+	position += velocity * delta
+	constant_linear_velocity = Vector3(velocity)
