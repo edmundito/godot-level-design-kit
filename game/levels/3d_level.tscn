@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://u7qtq6dpinpv"]
+[gd_scene load_steps=24 format=3 uid="uid://u7qtq6dpinpv"]
 
 [ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/engine/level.gd" id="1_4wtkf"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://addons/platform_level_design_kit/assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="2_e0k6b"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bn1toqih8nu6g" path="res://addons/platform_level_design_kit/game_objects/collectables/gem.tscn" id="7_pkl8c"]
 [ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://addons/platform_level_design_kit/game_objects/gates/checkpoint.tscn" id="8_iwdui"]
 [ext_resource type="PackedScene" uid="uid://cilpvbr4vkpib" path="res://addons/platform_level_design_kit/game_objects/collectables/heart.tscn" id="8_ymg4b"]
-[ext_resource type="PackedScene" uid="uid://im5l5rhi0y8g" path="res://addons/platform_level_design_kit/assets/models/kenney/graveyard_kit/character-ghost.glb" id="12_l123k"]
+[ext_resource type="PackedScene" uid="uid://y2i4r62hbec8" path="res://addons/platform_level_design_kit/game_objects/enemies/ghost.tscn" id="12_1n5xr"]
+[ext_resource type="Script" path="res://addons/platform_level_design_kit/plugin/scripts/resources/patrol_path.gd" id="13_c858d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
 albedo_texture = ExtResource("2_e0k6b")
@@ -31,6 +32,36 @@ albedo_texture = ExtResource("5_bjpws")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v41m"]
 albedo_texture = ExtResource("2_e0k6b")
 uv1_triplanar = true
+
+[sub_resource type="Resource" id="Resource_ksc5u"]
+script = ExtResource("13_c858d")
+amount = 3.0
+x_direction = 0
+z_direction = 1
+
+[sub_resource type="Resource" id="Resource_ltyah"]
+script = ExtResource("13_c858d")
+amount = 5.0
+x_direction = 1
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_yt3oc"]
+script = ExtResource("13_c858d")
+amount = 3.0
+x_direction = 0
+z_direction = 2
+
+[sub_resource type="Resource" id="Resource_whjkd"]
+script = ExtResource("13_c858d")
+amount = 5.0
+x_direction = 2
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_w0uiw"]
+script = ExtResource("13_c858d")
+amount = 4.0
+x_direction = 0
+z_direction = 0
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_4wtkf")
@@ -104,5 +135,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.5, 9)
 [node name="Player" parent="." instance=ExtResource("5_e1470")]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 2.08165e-12, 0.5, 2.08165e-12)
 
-[node name="character-ghost2" parent="." instance=ExtResource("12_l123k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -9)
+[node name="Ghost" parent="." instance=ExtResource("12_1n5xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+patrol_paths = Array[ExtResource("13_c858d")]([SubResource("Resource_ksc5u"), SubResource("Resource_ltyah"), SubResource("Resource_yt3oc"), SubResource("Resource_whjkd"), SubResource("Resource_w0uiw")])

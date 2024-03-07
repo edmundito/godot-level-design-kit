@@ -13,5 +13,5 @@ zoom_speed = 10
 rotation_speed = 120
 movement_speed = 250.0
 jump_strength = 7.0
-double_jump = false
+double_jump = true
 particles_enabled = false

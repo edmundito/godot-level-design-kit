@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody3D
 
-@export var speed := 3.0
+@export var speed := 1.0
 @export var patrol_paths: Array[PatrolPath] = []
 ## Enable logging in output window
 @export var show_path_changes_in_log := false
@@ -18,7 +18,7 @@ func _ready() -> void:
 		_increment_path_index()
 		path_start_pos = Vector3(position)
 		
-func _increment_path_index():
+func _increment_path_index() -> void:
 	path_index += 1
 	if path_index >= patrol_paths.size():
 		path_index = 0
@@ -54,8 +54,8 @@ func _patrol_process() -> void:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = 0 #move_toward(velocity.x, 0, speed)
+		velocity.z = 0 #move_toward(velocity.z, 0, speed)
 			
 func _physics_process(delta) -> void:
 	if not is_on_floor():
