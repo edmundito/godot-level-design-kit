@@ -132,8 +132,8 @@ size = Vector3(1, 4, 5)
 material = SubResource("StandardMaterial3D_br7yj")
 
 [node name="Wall1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3066, 1.5, -1)
-size = Vector3(0.5, 3, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.3066, 1, -1)
+size = Vector3(0.5, 2, 5)
 material = SubResource("StandardMaterial3D_hb8xu")
 
 [node name="Lava" type="CSGCombiner3D" parent="." groups=["lava"]]
@@ -160,8 +160,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.08165e-12, 2.08165e-1
 metadata/_edit_lock_ = true
 
 [node name="ExitDoor" parent="Objects" instance=ExtResource("5_esaup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 2.08165e-12, -1)
-coins_required = 20
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6, 2.08165e-12, -1)
 
 [node name="Checkpoint1" parent="Objects" instance=ExtResource("8_miclv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.08165e-12, 2.08165e-12)
