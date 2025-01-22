@@ -1,5 +1,4 @@
-class_name PatrolPath
-extends Resource
+class_name PatrolPath extends Resource
 
 enum PatrolPathDirection {
 	## Do nothing
