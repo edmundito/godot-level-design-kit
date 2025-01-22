@@ -11,24 +11,26 @@ config_version=5
 [application]
 
 config/name="Platform Level Design Kit"
-run/main_scene="res://levels/2d_level.tscn"
+run/main_scene="res://levels/3d_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Audio="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/audio.gd"
-E="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/engine.gd"
-G="*res://addons/platform_level_design_kit/plugin/scripts/autoloads/globals.gd"
+Audio="*res://engine/scripts/autoloads/audio.gd"
+E="*res://engine/scripts/autoloads/engine.gd"
+G="*res://engine/scripts/autoloads/globals.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
-[editor_plugins]
+[file_customization]
 
-enabled=PackedStringArray("res://addons/platform_level_design_kit/plugin.cfg")
+folder_colors={
+"res://levels/": "green"
+}
 
 [input]
 

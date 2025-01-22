@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj83qd635hwdv"]
+
+[ext_resource type="PackedScene" uid="uid://do8sg1k5xvj2h" path="res://assets/models/kenney/platformer_starter_kit/platform.glb" id="1_8dsbf"]
+[ext_resource type="Script" path="res://engine/scripts/game_objects/moving_platform.gd" id="1_g5hos"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_unxyl"]
+size = Vector3(2, 0.5, 2)
+
+[node name="MovingPlatform" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+script = ExtResource("1_g5hos")
+
+[node name="platform" parent="." instance=ExtResource("1_8dsbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_unxyl")
+
+[node name="WaitTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

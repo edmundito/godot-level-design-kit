@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cilpvbr4vkpib"]
+
+[ext_resource type="Script" path="res://engine/scripts/game_objects/collectable.gd" id="1_g7cqb"]
+[ext_resource type="PackedScene" uid="uid://b6f0iv2dffgc8" path="res://assets/models/kenney/platformer_kit/items/heart.glb" id="2_lmi6y"]
+[ext_resource type="Texture2D" uid="uid://bs6puxrivhkk2" path="res://assets/sprites/particle.png" id="3_8r2se"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bnkeq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hm51"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_8r2se")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_744xy"]
+
+[sub_resource type="Curve" id="Curve_6a7l3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_7tsk2"]
+colors = PackedColorArray(0.996094, 0.910156, 0.351563, 1, 1, 1, 1, 1)
+
+[node name="Heart" type="Area3D" groups=["heart"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_g7cqb")
+bounce_speed = 0
+
+[node name="heart2" parent="." instance=ExtResource("2_lmi6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.25, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_bnkeq")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447834, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_6hm51")
+mesh = SubResource("QuadMesh_744xy")
+direction = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+damping_min = 0.5
+damping_max = 0.5
+scale_amount_min = 0.15
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_6a7l3")
+color_ramp = SubResource("Gradient_7tsk2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
