@@ -1,0 +1,172 @@
+[gd_scene load_steps=28 format=3 uid="uid://bql5u3ph7v8pu"]
+
+[ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_mglr8"]
+[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://engine/main/main-environment.tres" id="2_uqotv"]
+[ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="3_owmlf"]
+[ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_h6m1w"]
+[ext_resource type="Texture2D" uid="uid://bviw25crl8ko4" path="res://assets/textures/kenney_prototype_textures/Purple/texture_02.png" id="5_84hue"]
+[ext_resource type="Texture2D" uid="uid://ykdxfsx4icw2" path="res://assets/textures/kenney_prototype_textures/Red/texture_10.png" id="6_vdba1"]
+[ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://engine/game_objects/collectables/coin.tscn" id="7_knlo0"]
+[ext_resource type="PackedScene" uid="uid://bn1toqih8nu6g" path="res://engine/game_objects/collectables/gem.tscn" id="8_clyl4"]
+[ext_resource type="PackedScene" uid="uid://cilpvbr4vkpib" path="res://engine/game_objects/collectables/heart.tscn" id="9_c8mx4"]
+[ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://engine/game_objects/gates/exit_door.tscn" id="10_ccuty"]
+[ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://engine/game_objects/gates/checkpoint.tscn" id="11_cou5k"]
+[ext_resource type="PackedScene" uid="uid://bj83qd635hwdv" path="res://engine/game_objects/platforms/moving_platform.tscn" id="12_h3301"]
+[ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path.gd" id="13_guga2"]
+[ext_resource type="PackedScene" uid="uid://cwcdx3ufih47c" path="res://engine/game_objects/enemies/ghost_2.tscn" id="14_mm2ey"]
+[ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2.gd" id="15_ywhl8"]
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://engine/game_objects/player/player.tscn" id="16_hugx6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
+albedo_texture = ExtResource("3_owmlf")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yprf"]
+albedo_texture = ExtResource("3_owmlf")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qopi5"]
+albedo_texture = ExtResource("4_h6m1w")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lscd"]
+albedo_texture = ExtResource("5_84hue")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v41m"]
+albedo_texture = ExtResource("3_owmlf")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwc8j"]
+albedo_texture = ExtResource("6_vdba1")
+subsurf_scatter_enabled = true
+uv1_triplanar = true
+
+[sub_resource type="Resource" id="Resource_c56fv"]
+script = ExtResource("13_guga2")
+amount = 0.0
+x_direction = 0
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_q0cio"]
+script = ExtResource("13_guga2")
+amount = 0.0
+x_direction = 0
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_5if5t"]
+script = ExtResource("13_guga2")
+amount = 0.0
+x_direction = 0
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_v312u"]
+script = ExtResource("13_guga2")
+amount = 0.0
+x_direction = 0
+y_direction = 0
+z_direction = 0
+
+[sub_resource type="Resource" id="Resource_fjs68"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(0, 0, 0)
+wait_seconds = 0
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_mglr8")
+metadata/_edit_lock_ = true
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_uqotv")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.541675, -0.45452, 2.24196e-16, 0.642788, 0.766044, 0.707107, -0.541675, 0.45452, -6, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.75
+
+[node name="StaticGroundAndPlatforms" type="CSGCombiner3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Ground1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -10, 2.08165e-12)
+size = Vector3(25, 20, 25)
+material = SubResource("StandardMaterial3D_br7yj")
+
+[node name="Hole1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0566, -0.25, 5)
+operation = 2
+size = Vector3(4, 1.5, 5)
+material = SubResource("StandardMaterial3D_2yprf")
+
+[node name="Wall1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.307, 1.5, 2.08165e-12)
+size = Vector3(0.5, 3, 5)
+material = SubResource("StandardMaterial3D_qopi5")
+
+[node name="Platform1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, 0)
+size = Vector3(1, 0.5, 1)
+material = SubResource("StandardMaterial3D_0lscd")
+
+[node name="Platform2" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.75, 0)
+size = Vector3(1, 1.5, 1)
+material = SubResource("StandardMaterial3D_0lscd")
+
+[node name="Ramp1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 11.0566, 0.05, 5)
+size = Vector3(4, 1, 5)
+material = SubResource("StandardMaterial3D_5v41m")
+
+[node name="Lava" type="CSGCombiner3D" parent="." groups=["lava"]]
+metadata/_edit_lock_ = true
+
+[node name="Lava1" type="CSGBox3D" parent="Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0566, -0.45, -6)
+size = Vector3(4, 1, 4)
+material = SubResource("StandardMaterial3D_rwc8j")
+
+[node name="Collectables" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Coin1" parent="Collectables" instance=ExtResource("7_knlo0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2.08165e-12, -6)
+
+[node name="Gem1" parent="Collectables" instance=ExtResource("8_clyl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.08165e-12, -7.09987)
+
+[node name="Heart1" parent="Collectables" instance=ExtResource("9_c8mx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4864, 2.08165e-12, -5.32363)
+
+[node name="Objects" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ExitDoor" parent="Objects" instance=ExtResource("10_ccuty")]
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 8.6, 2.08165e-12, 0)
+
+[node name="Checkpoint1" parent="Objects" instance=ExtResource("11_cou5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.08165e-12, 2)
+
+[node name="Checkpoint2" parent="Objects" instance=ExtResource("11_cou5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, 5)
+
+[node name="MovingPlatforms" type="Node3D" parent="."]
+
+[node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("12_h3301")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 8)
+patrol_paths = Array[ExtResource("13_guga2")]([SubResource("Resource_c56fv"), SubResource("Resource_q0cio"), SubResource("Resource_5if5t"), SubResource("Resource_v312u")])
+
+[node name="Enemies" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Ghost" parent="Enemies" instance=ExtResource("14_mm2ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.00063, -2)
+
+[node name="Ghost2" parent="Enemies" instance=ExtResource("14_mm2ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, -2)
+patrol_paths = Array[ExtResource("15_ywhl8")]([SubResource("Resource_fjs68")])
+
+[node name="Player" parent="." instance=ExtResource("16_hugx6")]
