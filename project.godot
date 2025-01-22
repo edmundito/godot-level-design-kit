@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Platform Level Design Kit"
+config/name="Level Design Kit"
 run/main_scene="res://levels/3d_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
