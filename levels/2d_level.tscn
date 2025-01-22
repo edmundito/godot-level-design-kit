@@ -35,50 +35,50 @@ uv1_triplanar = true
 
 [sub_resource type="Resource" id="Resource_amvlu"]
 script = ExtResource("12_gryck")
-amount = 2.0
-x_direction = 1
+amount = 0.0
+x_direction = 0
 y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_io3r4"]
 script = ExtResource("12_gryck")
-amount = 2.0
+amount = 0.0
 x_direction = 0
-y_direction = 1
+y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_ljvxc"]
 script = ExtResource("12_gryck")
-amount = 2.0
-x_direction = 2
+amount = 0.0
+x_direction = 0
 y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_aglkw"]
 script = ExtResource("12_gryck")
-amount = 2.0
+amount = 0.0
 x_direction = 0
-y_direction = 2
+y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_ltyah"]
 script = ExtResource("12_gryck")
-amount = 5.0
-x_direction = 1
+amount = 0.0
+x_direction = 0
 y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_w0uiw"]
 script = ExtResource("12_gryck")
-amount = 4.0
+amount = 0.0
 x_direction = 0
 y_direction = 0
 z_direction = 0
 
 [sub_resource type="Resource" id="Resource_whjkd"]
 script = ExtResource("12_gryck")
-amount = 5.0
-x_direction = 2
+amount = 0.0
+x_direction = 0
 y_direction = 0
 z_direction = 0
 
