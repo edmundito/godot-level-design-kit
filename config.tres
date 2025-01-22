@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameConfig" load_steps=2 format=3 uid="uid://dx3xxm0qykltd"]
+[gd_resource type="Resource" script_class="GameConfiguration" load_steps=2 format=3 uid="uid://dx3xxm0qykltd"]
 
 [ext_resource type="Script" path="res://engine/scripts/config.gd" id="1_kaldo"]
 
