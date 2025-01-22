@@ -1,5 +1,4 @@
-class_name GameConfig
-extends Resource
+class_name GameConfiguration extends Resource
 
 @export_group("Camera")
 @export_range(1, 179) var field_of_view: int = 40
