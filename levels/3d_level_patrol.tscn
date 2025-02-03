@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://bql5u3ph7v8pu"]
+[gd_scene load_steps=33 format=3 uid="uid://bql5u3ph7v8pu"]
 
 [ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_mglr8"]
-[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://engine/main/main-environment.tres" id="2_uqotv"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="3_owmlf"]
 [ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="4_h6m1w"]
 [ext_resource type="Texture2D" uid="uid://bviw25crl8ko4" path="res://assets/textures/kenney_prototype_textures/Purple/texture_02.png" id="5_84hue"]
@@ -16,6 +15,33 @@
 [ext_resource type="PackedScene" uid="uid://cwcdx3ufih47c" path="res://engine/game_objects/enemies/ghost_2.tscn" id="14_mm2ey"]
 [ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2.gd" id="15_ywhl8"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://engine/game_objects/player/player.tscn" id="16_hugx6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lg8b7"]
+sky_horizon_color = Color(0.67451, 0.682353, 0.698039, 1)
+sky_curve = 0.0175
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_curve = 0.171484
+
+[sub_resource type="Sky" id="Sky_7bk1c"]
+sky_material = SubResource("ProceduralSkyMaterial_lg8b7")
+
+[sub_resource type="Environment" id="Environment_ju4hy"]
+background_mode = 1
+background_color = Color(0.439216, 0.737255, 0.858824, 1)
+sky = SubResource("Sky_7bk1c")
+ambient_light_source = 2
+ambient_light_color = Color(0.662745, 0.694118, 0.772549, 1)
+ambient_light_energy = 1.15
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 0.45
+ssao_intensity = 1.0
+ssao_power = 15.0
+glow_enabled = true
+glow_levels/2 = 0.6
+glow_levels/3 = 0.6
+glow_levels/5 = 0.0
+glow_intensity = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
 albedo_texture = ExtResource("3_owmlf")
@@ -69,17 +95,32 @@ x_direction = 0
 y_direction = 0
 z_direction = 0
 
-[sub_resource type="Resource" id="Resource_fjs68"]
+[sub_resource type="Resource" id="Resource_w1mwh"]
 script = ExtResource("15_ywhl8")
-move_units = Vector3(0, 0, 0)
-wait_seconds = 0
+move_units = Vector3(5, 0, 0)
+wait = 2.0
+
+[sub_resource type="Resource" id="Resource_xncfh"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(0, 0, 5)
+wait = 0.0
+
+[sub_resource type="Resource" id="Resource_1rtb1"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(-5, 0, 0)
+wait = 0.0
+
+[sub_resource type="Resource" id="Resource_tohhj"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(0, 0, -5)
+wait = 0.0
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_mglr8")
 metadata/_edit_lock_ = true
 
 [node name="Environment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_uqotv")
+environment = SubResource("Environment_ju4hy")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.541675, -0.45452, 2.24196e-16, 0.642788, 0.766044, 0.707107, -0.541675, 0.45452, -6, 0, 0)
@@ -163,10 +204,14 @@ patrol_paths = Array[ExtResource("13_guga2")]([SubResource("Resource_c56fv"), Su
 metadata/_edit_lock_ = true
 
 [node name="Ghost" parent="Enemies" instance=ExtResource("14_mm2ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.00063, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.00063, -4.17554)
 
 [node name="Ghost2" parent="Enemies" instance=ExtResource("14_mm2ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, -2)
-patrol_paths = Array[ExtResource("15_ywhl8")]([SubResource("Resource_fjs68")])
+patrol_paths = Array[ExtResource("15_ywhl8")]([SubResource("Resource_w1mwh"), SubResource("Resource_xncfh"), SubResource("Resource_1rtb1"), SubResource("Resource_tohhj")])
+log_path_changes = true
+
+[node name="Ghost3" parent="Enemies" instance=ExtResource("14_mm2ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, -0.564102)
 
 [node name="Player" parent="." instance=ExtResource("16_hugx6")]
