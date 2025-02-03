@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://u7qtq6dpinpv"]
+[gd_scene load_steps=29 format=3 uid="uid://u7qtq6dpinpv"]
 
 [ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_4wtkf"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="2_e0k6b"]
@@ -65,34 +65,6 @@ uv1_triplanar = true
 albedo_texture = ExtResource("3_nbcf2")
 subsurf_scatter_enabled = true
 uv1_triplanar = true
-
-[sub_resource type="Resource" id="Resource_c56fv"]
-script = ExtResource("13_c858d")
-amount = 3.0
-x_direction = 1
-y_direction = 0
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_q0cio"]
-script = ExtResource("13_c858d")
-amount = 3.0
-x_direction = 0
-y_direction = 1
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_5if5t"]
-script = ExtResource("13_c858d")
-amount = 3.0
-x_direction = 2
-y_direction = 0
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_v312u"]
-script = ExtResource("13_c858d")
-amount = 3.0
-x_direction = 0
-y_direction = 2
-z_direction = 0
 
 [sub_resource type="Resource" id="Resource_ksc5u"]
 script = ExtResource("13_c858d")
@@ -212,7 +184,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, 5)
 
 [node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("12_dqbx2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 8)
-patrol_paths = Array[ExtResource("13_c858d")]([SubResource("Resource_c56fv"), SubResource("Resource_q0cio"), SubResource("Resource_5if5t"), SubResource("Resource_v312u")])
 
 [node name="Enemies" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
