@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bql5u3ph7v8pu"]
+[gd_scene load_steps=35 format=3 uid="uid://bql5u3ph7v8pu"]
 
 [ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_mglr8"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="3_owmlf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bj83qd635hwdv" path="res://engine/game_objects/platforms/moving_platform.tscn" id="12_h3301"]
 [ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path.gd" id="13_guga2"]
 [ext_resource type="PackedScene" uid="uid://cwcdx3ufih47c" path="res://engine/game_objects/enemies/ghost_2.tscn" id="14_mm2ey"]
+[ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2_config.gd" id="15_7ve17"]
 [ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2.gd" id="15_ywhl8"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://engine/game_objects/player/player.tscn" id="16_hugx6"]
 
@@ -95,25 +96,31 @@ x_direction = 0
 y_direction = 0
 z_direction = 0
 
-[sub_resource type="Resource" id="Resource_w1mwh"]
+[sub_resource type="Resource" id="Resource_gvvl6"]
 script = ExtResource("15_ywhl8")
 move_units = Vector3(5, 0, 0)
-wait = 2.0
-
-[sub_resource type="Resource" id="Resource_xncfh"]
-script = ExtResource("15_ywhl8")
-move_units = Vector3(0, 0, 5)
 wait = 0.0
 
-[sub_resource type="Resource" id="Resource_1rtb1"]
+[sub_resource type="Resource" id="Resource_okv0d"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(0, 0, 5)
+wait = 3.0
+
+[sub_resource type="Resource" id="Resource_457l8"]
 script = ExtResource("15_ywhl8")
 move_units = Vector3(-5, 0, 0)
 wait = 0.0
 
-[sub_resource type="Resource" id="Resource_tohhj"]
+[sub_resource type="Resource" id="Resource_p1xmd"]
 script = ExtResource("15_ywhl8")
 move_units = Vector3(0, 0, -5)
 wait = 0.0
+
+[sub_resource type="Resource" id="Resource_vmrxk"]
+script = ExtResource("15_7ve17")
+speed = 1.0
+paths = Array[ExtResource("15_ywhl8")]([SubResource("Resource_gvvl6"), SubResource("Resource_okv0d"), SubResource("Resource_457l8"), SubResource("Resource_p1xmd")])
+log_path_changes = false
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_mglr8")
@@ -208,8 +215,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.00063, -4.17554)
 
 [node name="Ghost2" parent="Enemies" instance=ExtResource("14_mm2ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, -2)
-patrol_paths = Array[ExtResource("15_ywhl8")]([SubResource("Resource_w1mwh"), SubResource("Resource_xncfh"), SubResource("Resource_1rtb1"), SubResource("Resource_tohhj")])
-log_path_changes = true
+patrol_path = SubResource("Resource_vmrxk")
 
 [node name="Ghost3" parent="Enemies" instance=ExtResource("14_mm2ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, -0.564102)

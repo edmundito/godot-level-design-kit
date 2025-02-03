@@ -1,11 +1,6 @@
 class_name Enemy2 extends CharacterBody3D
 
-## Units per second.
-@export var speed := 1.0
-## The path that the Enemy will patrol.
-@export var patrol_paths: Array[PatrolPath2] = []
-## Enables path logging in Output panel.
-@export var log_path_changes := false
+@export var patrol_path: PatrolPath2Config
 
 @onready var animation: AnimationPlayer = $Character/AnimationPlayer as AnimationPlayer
 
@@ -14,16 +9,16 @@ var rotation_direction: float = 1.5
 var _patrol_behavior: PatrolBehavior
 
 func _ready() -> void:
-	_patrol_behavior = PatrolBehavior.new(
-		self,
-		patrol_paths,
-		speed,
-		log_path_changes
-	)
-	add_child(_patrol_behavior)
+	if patrol_path != null:
+		_patrol_behavior = PatrolBehavior.new(
+			self,
+			patrol_path
+		)
+		add_child(_patrol_behavior)
 			
 func _physics_process(delta) -> void:	
-	_patrol_behavior.process()
+	if _patrol_behavior != null:
+		_patrol_behavior.process()
 
 	move_and_slide()
 	_check_collisions()
