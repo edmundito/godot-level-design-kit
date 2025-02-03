@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bql5u3ph7v8pu"]
+[gd_scene load_steps=33 format=3 uid="uid://bql5u3ph7v8pu"]
 
 [ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_mglr8"]
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="3_owmlf"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://engine/game_objects/gates/exit_door.tscn" id="10_ccuty"]
 [ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://engine/game_objects/gates/checkpoint.tscn" id="11_cou5k"]
 [ext_resource type="PackedScene" uid="uid://bj83qd635hwdv" path="res://engine/game_objects/platforms/moving_platform.tscn" id="12_h3301"]
-[ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path.gd" id="13_guga2"]
 [ext_resource type="PackedScene" uid="uid://cwcdx3ufih47c" path="res://engine/game_objects/enemies/ghost_2.tscn" id="14_mm2ey"]
 [ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2_config.gd" id="15_7ve17"]
 [ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2.gd" id="15_ywhl8"]
@@ -68,33 +67,21 @@ albedo_texture = ExtResource("6_vdba1")
 subsurf_scatter_enabled = true
 uv1_triplanar = true
 
-[sub_resource type="Resource" id="Resource_c56fv"]
-script = ExtResource("13_guga2")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
+[sub_resource type="Resource" id="Resource_ayhne"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(0, 5, 0)
+wait = 2.0
 
-[sub_resource type="Resource" id="Resource_q0cio"]
-script = ExtResource("13_guga2")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
+[sub_resource type="Resource" id="Resource_m73n8"]
+script = ExtResource("15_ywhl8")
+move_units = Vector3(0, -5, 0)
+wait = 0.0
 
-[sub_resource type="Resource" id="Resource_5if5t"]
-script = ExtResource("13_guga2")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_v312u"]
-script = ExtResource("13_guga2")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
+[sub_resource type="Resource" id="Resource_4fxou"]
+script = ExtResource("15_7ve17")
+speed = 1.0
+paths = Array[ExtResource("15_ywhl8")]([SubResource("Resource_ayhne"), SubResource("Resource_m73n8")])
+log_path_changes = true
 
 [sub_resource type="Resource" id="Resource_gvvl6"]
 script = ExtResource("15_ywhl8")
@@ -204,8 +191,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.08165e-12, 5)
 [node name="MovingPlatforms" type="Node3D" parent="."]
 
 [node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("12_h3301")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 8)
-patrol_paths = Array[ExtResource("13_guga2")]([SubResource("Resource_c56fv"), SubResource("Resource_q0cio"), SubResource("Resource_5if5t"), SubResource("Resource_v312u")])
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78794, 0.5, 8)
+patrol_path = SubResource("Resource_4fxou")
 
 [node name="Enemies" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
