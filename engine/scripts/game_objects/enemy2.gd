@@ -1,6 +1,7 @@
 class_name Enemy2 extends CharacterBody3D
 
-@export var patrol_path: PatrolPath2Config
+@export_custom(PROPERTY_HINT_RESOURCE_TYPE, "PatrolPath2Config", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_ALWAYS_DUPLICATE)
+var patrol_path: PatrolPath2Config
 
 @onready var animation: AnimationPlayer = $Character/AnimationPlayer as AnimationPlayer
 

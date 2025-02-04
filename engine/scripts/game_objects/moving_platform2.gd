@@ -1,6 +1,7 @@
 class_name MovingPlatform2 extends StaticBody3D
 
-@export var patrol_path: PatrolPath2Config
+@export_custom(PROPERTY_HINT_RESOURCE_TYPE, "PatrolPath2Config", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_ALWAYS_DUPLICATE)
+var patrol_path: PatrolPath2Config
 
 var velocity := Vector3()
 
