@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dvk7nwys7nkqt"]
+[gd_scene load_steps=25 format=3 uid="uid://dvk7nwys7nkqt"]
 
 [ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="1_hwlvr"]
 [ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_r438d"]
@@ -58,34 +58,6 @@ uv1_triplanar = true
 albedo_texture = ExtResource("6_ajwvn")
 subsurf_scatter_enabled = true
 uv1_triplanar = true
-
-[sub_resource type="Resource" id="Resource_amvlu"]
-script = ExtResource("12_gryck")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_io3r4"]
-script = ExtResource("12_gryck")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_ljvxc"]
-script = ExtResource("12_gryck")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
-
-[sub_resource type="Resource" id="Resource_aglkw"]
-script = ExtResource("12_gryck")
-amount = 0.0
-x_direction = 0
-y_direction = 0
-z_direction = 0
 
 [sub_resource type="Resource" id="Resource_ltyah"]
 script = ExtResource("12_gryck")
@@ -198,7 +170,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2.08165e-12, 2.08165e-12)
 
 [node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("12_va2jq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, 2.08165e-12)
-patrol_paths = Array[ExtResource("12_gryck")]([SubResource("Resource_amvlu"), SubResource("Resource_io3r4"), SubResource("Resource_ljvxc"), SubResource("Resource_aglkw")])
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)

@@ -1,0 +1,175 @@
+[gd_scene load_steps=26 format=3 uid="uid://byny7c7qqfm7n"]
+
+[ext_resource type="Script" path="res://engine/scripts/engine/level.gd" id="1_4oelr"]
+[ext_resource type="Texture2D" uid="uid://by1vvm6ehnaq3" path="res://assets/textures/kenney_prototype_textures/Orange/texture_04.png" id="2_njyst"]
+[ext_resource type="Texture2D" uid="uid://cnlcs55mbi7bt" path="res://assets/textures/kenney_prototype_textures/Dark/texture_01.png" id="3_wdlrl"]
+[ext_resource type="Texture2D" uid="uid://d1nc4y7kxjho0" path="res://assets/textures/kenney_prototype_textures/Green/texture_04.png" id="4_ya1lg"]
+[ext_resource type="Texture2D" uid="uid://ykdxfsx4icw2" path="res://assets/textures/kenney_prototype_textures/Red/texture_10.png" id="5_gm13n"]
+[ext_resource type="PackedScene" uid="uid://c88u7h53ffu7s" path="res://engine/game_objects/gates/exit_door.tscn" id="6_82enj"]
+[ext_resource type="PackedScene" uid="uid://dyhd6dlt7vwl5" path="res://engine/game_objects/gates/checkpoint.tscn" id="7_fnxn4"]
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://engine/game_objects/player/player.tscn" id="8_xjwub"]
+[ext_resource type="PackedScene" uid="uid://cpqdt0p2mg31p" path="res://engine/game_objects/platforms/moving_platform2.tscn" id="9_p0juh"]
+[ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2.gd" id="10_a7tn7"]
+[ext_resource type="Script" path="res://engine/scripts/behaviors/patrol_path2_config.gd" id="11_wjsip"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lg8b7"]
+sky_horizon_color = Color(0.67451, 0.682353, 0.698039, 1)
+sky_curve = 0.0175
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_curve = 0.171484
+
+[sub_resource type="Sky" id="Sky_7bk1c"]
+sky_material = SubResource("ProceduralSkyMaterial_lg8b7")
+
+[sub_resource type="Environment" id="Environment_ju4hy"]
+background_mode = 1
+background_color = Color(0.439216, 0.737255, 0.858824, 1)
+sky = SubResource("Sky_7bk1c")
+ambient_light_source = 2
+ambient_light_color = Color(0.662745, 0.694118, 0.772549, 1)
+ambient_light_energy = 1.15
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 0.45
+ssao_intensity = 1.0
+ssao_power = 15.0
+glow_enabled = true
+glow_levels/2 = 0.6
+glow_levels/3 = 0.6
+glow_levels/5 = 0.0
+glow_intensity = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br7yj"]
+albedo_texture = ExtResource("2_njyst")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yprf"]
+albedo_texture = ExtResource("2_njyst")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qopi5"]
+albedo_texture = ExtResource("3_wdlrl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqrsn"]
+albedo_texture = ExtResource("4_ya1lg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lscd"]
+albedo_texture = ExtResource("4_ya1lg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v41m"]
+albedo_texture = ExtResource("2_njyst")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scqn7"]
+albedo_texture = ExtResource("2_njyst")
+uv1_triplanar = true
+uv2_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noc87"]
+albedo_texture = ExtResource("5_gm13n")
+subsurf_scatter_enabled = true
+uv1_triplanar = true
+
+[sub_resource type="Resource" id="Resource_mj8cf"]
+script = ExtResource("10_a7tn7")
+move_units = Vector3(0, 2, 0)
+wait = 2.0
+
+[sub_resource type="Resource" id="Resource_3v0vg"]
+script = ExtResource("10_a7tn7")
+move_units = Vector3(0, -2, 0)
+wait = 2.0
+
+[sub_resource type="Resource" id="Resource_rm8qt"]
+script = ExtResource("11_wjsip")
+speed = 1.0
+paths = Array[ExtResource("10_a7tn7")]([SubResource("Resource_mj8cf"), SubResource("Resource_3v0vg")])
+log_path_changes = false
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_4oelr")
+metadata/_edit_lock_ = true
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ju4hy")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.541675, -0.45452, 2.24196e-16, 0.642788, 0.766044, 0.707107, -0.541675, 0.45452, -6, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.75
+
+[node name="Player" parent="." instance=ExtResource("8_xjwub")]
+
+[node name="StaticGroundAndPlatforms" type="CSGCombiner3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Ground1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -2, 0)
+size = Vector3(40, 4, 40)
+material = SubResource("StandardMaterial3D_br7yj")
+
+[node name="Hole1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0566, -0.25, 5)
+operation = 2
+size = Vector3(4, 1.5, 5)
+material = SubResource("StandardMaterial3D_2yprf")
+
+[node name="Hole2" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25492, -1.93855, 5)
+operation = 2
+size = Vector3(4, 4.29774, 5)
+material = SubResource("StandardMaterial3D_2yprf")
+
+[node name="Wall1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.307, 1.5, 2.08165e-12)
+size = Vector3(0.5, 3, 5)
+material = SubResource("StandardMaterial3D_qopi5")
+
+[node name="Platform1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, 0)
+size = Vector3(1, 0.5, 1)
+material = SubResource("StandardMaterial3D_kqrsn")
+
+[node name="Platform2" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.75, 0)
+size = Vector3(1, 1.5, 1)
+material = SubResource("StandardMaterial3D_0lscd")
+
+[node name="Ramp1" type="CSGBox3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 11.0566, 0.05, 5.60952)
+size = Vector3(4, 1, 5)
+material = SubResource("StandardMaterial3D_5v41m")
+
+[node name="Cylinder1" type="CSGCylinder3D" parent="StaticGroundAndPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+sides = 32
+material = SubResource("StandardMaterial3D_scqn7")
+
+[node name="Lava" type="CSGCombiner3D" parent="." groups=["lava"]]
+metadata/_edit_lock_ = true
+
+[node name="Lava1" type="CSGBox3D" parent="Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0566, -0.45, -6)
+size = Vector3(4, 1, 4)
+material = SubResource("StandardMaterial3D_noc87")
+
+[node name="Objects" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ExitDoor" parent="Objects" instance=ExtResource("6_82enj")]
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 8.6, 2.08165e-12, 0)
+gems_required = 0
+
+[node name="Checkpoint1" parent="Objects" instance=ExtResource("7_fnxn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.08165e-12, 2)
+
+[node name="MovingPlatforms" type="Node3D" parent="."]
+
+[node name="MovingPlatform" parent="MovingPlatforms" instance=ExtResource("9_p0juh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4676, 0.535627, 8.65025)
+
+[node name="MovingPlatformExample" parent="MovingPlatforms" instance=ExtResource("9_p0juh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4676, 0.535627, 12.6766)
+patrol_path = SubResource("Resource_rm8qt")

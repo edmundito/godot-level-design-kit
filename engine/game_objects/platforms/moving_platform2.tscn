@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpqdt0p2mg31p"]
+
+[ext_resource type="Script" path="res://engine/scripts/game_objects/moving_platform2.gd" id="1_wcsen"]
+[ext_resource type="Texture2D" uid="uid://bfmvessi8moxp" path="res://assets/textures/kenney_prototype_textures/Purple/texture_04.png" id="2_v7up4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjlou"]
+albedo_texture = ExtResource("2_v7up4")
+uv1_triplanar = true
+uv2_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5u6q5"]
+material = SubResource("StandardMaterial3D_bjlou")
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_unxyl"]
+size = Vector3(2, 0.5, 2)
+
+[node name="MovingPlatform" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+script = ExtResource("1_wcsen")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_5u6q5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_unxyl")
